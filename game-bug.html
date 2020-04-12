@@ -54,7 +54,7 @@
 
       gameSection = document.querySelector('#game')
 
-      fetchMetadata()
+      if (!config.demo) fetchMetadata()
     })
 
     /**
