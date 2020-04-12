@@ -4,6 +4,7 @@
   "description": "Metadata widget for OBS' Browser Source",
   "main": "index.js",
   "scripts": {
+    "postinstall": "node scripts/bootstrap.js",
     "test": "node index.js",
     "start": "npx serve public --single --symlinks"
   },
