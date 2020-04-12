@@ -26,7 +26,7 @@
       line-height: 1;
     }
 
-    p {
+    p.details {
       margin: 8px 0 0;
       font-size: 36px;
       font-weight: 500;
@@ -35,9 +35,14 @@
 </head>
 
 <body>
-  <h1 id="title"></h1>
-  <p id="description"></p>
+  <section id="game">
+    <h1 id="title">Game Title Here</h1>
+    <p class="details">Programming an OBS Browser source for stream metadata</p>
+    <p class="details">Q&A Welcomed!</p>
+  </section>
   <script type="text/javascript">
+    let gameSection = null
+
     document.addEventListener('DOMContentLoaded', function loadText() {
       const config = parseConfigFromHash()
       console.log(config)
@@ -47,12 +52,30 @@
         document.querySelector('body').classList.add('dark')
       }
 
-      // Load stream metadata text
-      const title = fetchTextFile('game-title.txt')
-        .then(updateTitle)
-      const description = fetchTextFile('game-description.txt')
-        .then(updateDescription)
+      gameSection = document.querySelector('#game')
+
+      fetchMetadata()
     })
+
+    /**
+     * Load stream metadata, e.g. game Title and Description
+     */
+    function fetchMetadata() {
+      Promise.all([
+        fetchTextFile('game-title.txt'),
+        fetchTextFile('game-description.txt'),
+      ]).then(([title, description]) => {
+        // Clear paragraphs
+        gameSection.innerHTML = ''
+
+        const titleElement = document.createElement('h1')
+        titleElement.id = 'title'
+        gameSection.appendChild(titleElement)
+
+        updateTitle(title)
+        addDetails(description)
+      })
+    }
 
     function fetchTextFile(path) {
       return fetch(path).then(response => response.text())
@@ -63,8 +86,16 @@
       document.querySelector('h1').textContent = text
     }
 
-    function updateDescription(text) {
-      document.querySelector('p').textContent = text
+    function addDetails(text) {
+      const paragraphs = text.split('\n')
+        .map(text => text.trim())
+        .filter(text => !!text && text !== '')
+        .forEach(text => {
+          const paragraph = document.createElement('p')
+          paragraph.classList.add('details')
+          paragraph.textContent = text
+          gameSection.appendChild(paragraph)
+        })
     }
 
     function parseConfigFromHash() {
