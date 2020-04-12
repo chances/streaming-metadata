@@ -1,6 +1,8 @@
 # Streaming Metadata
 
-Streaming metadata for OBS' Browser Source
+Metadata widget for OBS' Browser Source.
+
+![screenshot](https://github.com/chances/streaming-metadata/blob/master/media/example.png?raw=true)
 
 ## Usage
 
