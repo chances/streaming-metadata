@@ -6,6 +6,8 @@
 
 Metadata widget for OBS' Browser Source.
 
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/chances/streaming-metadata)
+
 ![screenshot](https://github.com/chances/streaming-metadata/blob/master/media/example.png?raw=true)
 
 ## Usage
