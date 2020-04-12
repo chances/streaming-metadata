@@ -16,11 +16,10 @@
     "url": "git+https://github.com/chances/streaming-metadata.git"
   },
   "keywords": [
-    "streaming",
-    "twitch",
-    "youtube",
     "obs",
-    "obs-browser-source"
+    "obs-browser-source",
+    "twitch",
+    "youtube"
   ],
   "author": "Chance Snow <git@chancesnow.me>",
   "license": "MIT",
