@@ -6,6 +6,8 @@
   "scripts": {
     "postinstall": "node scripts/bootstrap.js",
     "test": "node index.js",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags",
     "start": "npx serve public --single --symlinks"
   },
   "repository": {
