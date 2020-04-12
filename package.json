@@ -8,6 +8,7 @@
     "test": "node index.js",
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
+    "build:netlify": "rm public/index.html && cp game-bug.html public/index.html",
     "start": "npx serve public --single --symlinks"
   },
   "repository": {
