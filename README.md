@@ -10,16 +10,20 @@ Metadata widget for OBS' Browser Source.
 
 ## Usage
 
-Customize the size of metadata with Custom CSS in the Properties dialog of your Browser source:
+1. Deploy a clone or fork of this repo. Alternatively, you can [serve the repo locally](#Development).
+2. Create a Browser source in OBS and set its URL to your deployed URL.
+3. Customize the size of metadata by changing the Browser source's Custom CSS:
 
-```css
-#title { font-size: 60px; }
-#description { font-size: 30px; }
-```
+    ```css
+    #title { font-size: 60px; }
+    #description { font-size: 30px; }
+    ```
 
 ## Development
 
 Serve the widget locally, run `npm start`.
+
+The URL of the widget will be copied to your clipboard.
 
 ## License
 
