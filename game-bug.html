@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Metadata</title>
+  <style>
+    body {
+      margin: 40px 40px 0;
+      /* padding-left: 8px; */
+      font-family: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    body.dark {
+      color: white;
+      text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+        0px 8px 13px rgba(0, 0, 0, 0.1),
+        0px 18px 23px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 72px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    p {
+      margin: 8px 0 0;
+      font-size: 36px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="title"></h1>
+  <p id="description"></p>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function loadText() {
+      const config = parseConfigFromHash()
+      console.log(config)
+
+      // Dark mode
+      if (config.dark) {
+        document.querySelector('body').classList.add('dark')
+      }
+
+      // Load stream metadata text
+      const title = fetchTextFile('game-title.txt')
+        .then(updateTitle)
+      const description = fetchTextFile('game-description.txt')
+        .then(updateDescription)
+    })
+
+    function fetchTextFile(path) {
+      return fetch(path).then(response => response.text())
+    }
+
+    function updateTitle(text) {
+      document.querySelector('title').textContent = text
+      document.querySelector('h1').textContent = text
+    }
+
+    function updateDescription(text) {
+      document.querySelector('p').textContent = text
+    }
+
+    function parseConfigFromHash() {
+      const hash = location.hash.substring(1)
+      return hash.split('&').reduce(function (result, item) {
+        var parts = item.split('=');
+        result[parts[0]] = parts[1] || true;
+        return result;
+      }, {});
+    }
+  </script>
+</body>
+
+</html>

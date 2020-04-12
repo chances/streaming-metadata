@@ -1,0 +1,30 @@
+{
+  "name": "streaming-metadata",
+  "version": "0.1.0",
+  "description": "Streaming metadata for OBS' Browser Source",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "start": "npx serve public --single --symlinks"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chances/streaming-metadata.git"
+  },
+  "keywords": [
+    "streaming",
+    "twitch",
+    "youtube",
+    "obs",
+    "obs-browser-source"
+  ],
+  "author": "Chance Snow <git@chancesnow.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chances/streaming-metadata/issues"
+  },
+  "homepage": "https://github.com/chances/streaming-metadata#readme",
+  "devDependencies": {
+    "serve": "^11.3.0"
+  }
+}
