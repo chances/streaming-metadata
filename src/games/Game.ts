@@ -1,4 +1,4 @@
-import { JsonSerializer, JsonParser, JsonProp, JsonPropTypes } from '@peculiar/json-schema'
+import { JsonSerializer, JsonParser, JsonProp, JsonPropTypes } from '/web_modules/@peculiar/json-schema.js'
 
 export default class Game {
   @JsonProp({ type: JsonPropTypes.String })

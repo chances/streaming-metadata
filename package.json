@@ -2,21 +2,17 @@
   "name": "streaming-metadata",
   "version": "0.1.1",
   "description": "Metadata widget for OBS' Browser Source",
-  "type": "module",
-  "main": "dist/index.js",
-  "exports": "dist/index.js",
-  "module": "dist/index.js",
   "scripts": {
     "postinstall": "npm run build",
     "test": "start-server-and-test 5000 test:ci",
     "test:ci": "echo Server started successfully",
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
-    "build": "npm run build:ts && npm run build:frontend && node scripts/bootstrap.js",
-    "build:ts": "npx tsc",
-    "build:frontend": "npx snowpack --nomodule dist/game-bug.js",
-    "build:hard-copy-index": "rm public/index.html && cp game-bug.html public/index.html",
-    "build:netlify": "npm run build:hard-copy-index",
+    "prepack": "npm run build",
+    "build": "npm run build:mjs && npm run build:bundle",
+    "build:mjs": "npx snowpack && npx tsc",
+    "build:bundle": "npx snowpack --nomodule public/js/game-bug.js && shx cp -r web_modules public",
+    "build:netlify": "rm public/index.html && cp game-bug.html public/index.html",
     "start": "npx serve public --single --symlinks"
   },
   "repository": {
@@ -40,6 +36,7 @@
   },
   "devDependencies": {
     "serve": "^11.3.0",
+    "shx": "^0.3.2",
     "snowpack": "^1.6.0",
     "start-server-and-test": "^1.10.11",
     "typescript": "^3.8.3"

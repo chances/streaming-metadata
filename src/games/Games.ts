@@ -1,4 +1,4 @@
-import { JsonParser, JsonProp } from '@peculiar/json-schema'
+import { JsonParser, JsonProp } from '/web_modules/@peculiar/json-schema.js'
 import Game from './Game'
 
 export default class Games {

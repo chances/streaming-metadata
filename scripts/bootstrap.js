@@ -1,42 +1,16 @@
-import * as path from 'path'
-import { existsSync, mkdirSync, symlinkSync } from 'fs'
-import * as fs from 'fs'
+const path = require('path')
+const fs = require('fs')
 
-const publicDir = new URL('../public', import.meta.url)
+const publicDir = path.join(__dirname, '..', 'public')
 
-if (!existsSync(publicDir)) {
-  mkdirSync(publicDir, { recursive: true })
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir, { recursive: true })
 }
 
-const publicIndex = new URL('../public/index.html', import.meta.url)
-if (!existsSync(publicIndex)) {
-  process.chdir(publicDir.pathname)
+const publicIndex = path.join(__dirname, '..', 'public/index.html')
+if (!fs.existsSync(publicIndex)) {
+  process.chdir(publicDir)
 
   const relativeGameBugPath = path.join('..', 'game-bug.html')
-  symlinkSync(relativeGameBugPath, 'index.html', 'file')
-}
-
-const distDir = new URL('../dist', import.meta.url)
-const jsDir = new URL('public/js', publicDir)
-copyRecursiveSync(distDir.pathname, jsDir.pathname)
-
-const webModulesDir = new URL('../web_modules', import.meta.url)
-const publicWebModulesDir = new URL('public/web_modules', publicDir)
-copyRecursiveSync(webModulesDir.pathname, publicWebModulesDir.pathname)
-
-function copyRecursiveSync(src, dest) {
-  const exists = fs.existsSync(src)
-  const stats = exists && fs.statSync(src)
-  const isDirectory = exists && stats.isDirectory()
-  if (isDirectory) {
-    if (!existsSync(dest)) fs.mkdirSync(dest)
-    fs.readdirSync(src).forEach(function(childItemName) {
-      copyRecursiveSync(
-        path.join(src, childItemName),
-        path.join(dest, childItemName),
-      )
-    })
-  } else {
-    fs.copyFileSync(src, dest)
-  }
+  fs.symlinkSync(relativeGameBugPath, 'index.html', 'file')
 }
