@@ -1,10 +1,9 @@
 .vscode/
 media/
-
-# Generated public assets
-public/js/
-public/web_modules/
 web_modules/
+
+# Output of 'npm pack'
+*.tgz
 
 # Config files
 ts*.json
