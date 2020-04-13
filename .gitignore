@@ -1,5 +1,9 @@
-game-title.txt
-game-description.txt
+# Generated code
+dist/
+
+# Generated public assets
+public/js/
+web_modules/
 
 # Logs
 logs

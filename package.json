@@ -2,13 +2,21 @@
   "name": "streaming-metadata",
   "version": "0.1.1",
   "description": "Metadata widget for OBS' Browser Source",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": "dist/index.js",
+  "module": "dist/index.js",
   "scripts": {
-    "postinstall": "node scripts/bootstrap.js",
-    "test": "node index.js",
+    "postinstall": "npm run build",
+    "test": "start-server-and-test 5000 test:ci",
+    "test:ci": "echo Server started successfully",
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
-    "build:netlify": "rm public/index.html && cp game-bug.html public/index.html",
+    "build": "npm run build:ts && npm run build:frontend && node scripts/bootstrap.js",
+    "build:ts": "npx tsc",
+    "build:frontend": "npx snowpack --nomodule dist/game-bug.js",
+    "build:hard-copy-index": "rm public/index.html && cp game-bug.html public/index.html",
+    "build:netlify": "npm run build:hard-copy-index",
     "start": "npx serve public --single --symlinks"
   },
   "repository": {
@@ -27,7 +35,13 @@
     "url": "https://github.com/chances/streaming-metadata/issues"
   },
   "homepage": "https://github.com/chances/streaming-metadata#readme",
+  "dependencies": {
+    "@peculiar/json-schema": "^1.1.10"
+  },
   "devDependencies": {
-    "serve": "^11.3.0"
+    "serve": "^11.3.0",
+    "snowpack": "^1.6.0",
+    "start-server-and-test": "^1.10.11",
+    "typescript": "^3.8.3"
   }
 }

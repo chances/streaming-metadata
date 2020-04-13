@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/StreamingMetadataGame"
+  },
+  "definitions": {
+    "StreamingMetadataGame": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string"
+        },
+        "twitch-title": {
+          "type": "string"
+        },
+        "live-notification": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "alias",
+        "details",
+        "title"
+      ],
+      "title": "StreamingMetadataGame"
+    }
+  }
+}

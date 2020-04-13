@@ -40,73 +40,8 @@
     <p class="details">Programming an OBS Browser source for stream metadata</p>
     <p class="details">Q&A Welcomed!</p>
   </section>
-  <script type="text/javascript">
-    let gameSection = null
-
-    document.addEventListener('DOMContentLoaded', function loadText() {
-      const config = parseConfigFromHash()
-      console.log(config)
-
-      // Dark mode
-      if (config.dark) {
-        document.querySelector('body').classList.add('dark')
-      }
-
-      gameSection = document.querySelector('#game')
-
-      if (!config.demo) fetchMetadata()
-    })
-
-    /**
-     * Load stream metadata, e.g. game Title and Description
-     */
-    function fetchMetadata() {
-      Promise.all([
-        fetchTextFile('game-title.txt'),
-        fetchTextFile('game-description.txt'),
-      ]).then(([title, description]) => {
-        // Clear paragraphs
-        gameSection.innerHTML = ''
-
-        const titleElement = document.createElement('h1')
-        titleElement.id = 'title'
-        gameSection.appendChild(titleElement)
-
-        updateTitle(title)
-        addDetails(description)
-      })
-    }
-
-    function fetchTextFile(path) {
-      return fetch(path).then(response => response.text())
-    }
-
-    function updateTitle(text) {
-      document.querySelector('title').textContent = text
-      document.querySelector('h1').textContent = text
-    }
-
-    function addDetails(text) {
-      const paragraphs = text.split('\n')
-        .map(text => text.trim())
-        .filter(text => !!text && text !== '')
-        .forEach(text => {
-          const paragraph = document.createElement('p')
-          paragraph.classList.add('details')
-          paragraph.textContent = text
-          gameSection.appendChild(paragraph)
-        })
-    }
-
-    function parseConfigFromHash() {
-      const hash = location.hash.substring(1)
-      return hash.split('&').reduce(function (result, item) {
-        var parts = item.split('=');
-        result[parts[0]] = parts[1] || true;
-        return result;
-      }, {});
-    }
-  </script>
+  <script type="module" src="js/game-bug.js"></script>
+  <script nomodule src="/web_modules/app.nomodule.js"></script>
 </body>
 
 </html>
