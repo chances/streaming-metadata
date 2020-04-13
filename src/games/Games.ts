@@ -1,5 +1,5 @@
 import { JsonParser, JsonProp } from '@peculiar/json-schema'
-import { Game } from './Game'
+import Game from './Game'
 
 export default class Games {
   @JsonProp({ type: Game, repeated: true, schema: 'StreamingMetadata' })

@@ -1,5 +1,4 @@
-import Games from './Games'
-import { Game } from './Game'
+import { Game, Games } from './games'
 import * as config from './config'
 
 let gameSection: Element

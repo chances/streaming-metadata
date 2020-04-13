@@ -1,6 +1,6 @@
 import { JsonSerializer, JsonParser, JsonProp, JsonPropTypes } from '@peculiar/json-schema'
 
-export class Game {
+export default class Game {
   @JsonProp({ type: JsonPropTypes.String })
   title = ''
 
