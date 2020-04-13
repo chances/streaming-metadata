@@ -1,0 +1,17 @@
+.vscode/
+media/
+
+# Generated public assets
+public/js/
+public/web_modules/
+web_modules/
+
+# Config files
+ts*.json
+
+# Test Coverage
+.nyc_output/
+coverage/
+
+# CI
+.github/workflows
