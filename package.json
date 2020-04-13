@@ -1,6 +1,6 @@
 {
   "name": "streaming-metadata",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Metadata widget for OBS' Browser Source",
   "scripts": {
     "postinstall": "npm run build",
