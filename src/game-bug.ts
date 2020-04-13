@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', function loadText() {
  */
 async function fetchMetadata(metadataUrl: string) {
   const json = await fetchTextFile(metadataUrl)
-  return Games.fromJson(json).games
+  return JSON.parse(json) as Game[]
+  // TODO: Fix this return Games.fromJson(json).games
 }
 
 function updateMetadata(profile: string) {
