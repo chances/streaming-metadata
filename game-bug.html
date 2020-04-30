@@ -32,6 +32,14 @@
       text-align: right;
     }
 
+    #game {
+      opacity: 1;
+      transition: opacity 0.75s ease;
+    }
+    body.loading #game {
+      opacity: 0;
+    }
+
     h1 {
       margin: 0;
       font-size: 72px;

@@ -3,12 +3,12 @@ import * as config from './config'
 
 let gameSection: Element
 
-document.addEventListener('DOMContentLoaded', function loadText() {
-  console.log(config)
+document.addEventListener('DOMContentLoaded', async function loadText() {
+  const body = document.querySelector('body')
+  body?.classList.remove('loading')
 
   // Dark mode
   if (config.flag('dark')) {
-    const body = document.querySelector('body')
     body?.classList.add('dark')
 
     if (config.flag('debug') && body) {
@@ -28,10 +28,15 @@ document.addEventListener('DOMContentLoaded', function loadText() {
   const metadataUrl = config.url('games')
   const profile = config.value('profile')
   if (!config.flag('demo') && metadataUrl && profile) {
-    fetchMetadata(metadataUrl.toString()).then(updateMetadata(profile)).catch((err: any) => {
+    try {
+      body?.classList.add('loading')
+      await fetchMetadata(metadataUrl.toString()).then(updateMetadata(profile))
+    } catch (err) {
       // TODO: Log error in Sentry?
       console.error(err)
-    })
+    } finally {
+      body?.classList.remove('loading')
+    }
   }
 })
 
