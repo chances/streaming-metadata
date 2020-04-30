@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "Metadata widget for OBS' Browser Source",
   "scripts": {
-    "postinstall": "npm run build",
+    "postinstall": "npm run build:end-user",
     "test": "start-server-and-test 5000 test:ci",
     "test:ci": "echo Server started successfully",
     "preversion": "npm test",
@@ -12,6 +12,7 @@
     "build": "npm run build:mjs && npm run build:bundle",
     "build:mjs": "npx snowpack && npx tsc",
     "build:bundle": "npx snowpack --nomodule public/js/game-bug.js && shx cp -r web_modules public",
+    "build:end-user": "npx symlink-cli game-bug.html public/index.html",
     "build:netlify": "rm public/index.html && cp game-bug.html public/index.html",
     "start": "npx serve public --single --symlinks"
   },
