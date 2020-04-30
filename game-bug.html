@@ -12,9 +12,9 @@
     }
 
     body {
-      margin: 40px 40px 0;
+      margin: 40px;
       /* padding-left: 8px; */
-      height: calc(100% - 40px);
+      height: calc(100% - 80px);
       font-family: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
@@ -44,10 +44,13 @@
       font-size: 36px;
       font-weight: 500;
     }
+    p.details:last-child {
+      line-height: 1;
+    }
   </style>
 </head>
 
-<body>
+<body class="loading">
   <section id="game">
     <h1 id="title">Game Title Here</h1>
     <p class="details">Programming an OBS Browser source for stream metadata</p>
