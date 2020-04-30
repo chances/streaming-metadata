@@ -42,8 +42,8 @@
   "devDependencies": {
     "serve": "^11.3.0",
     "shx": "^0.3.2",
-    "snowpack": "^1.6.0",
-    "start-server-and-test": "^1.10.11",
+    "snowpack": "^1.7.1",
+    "start-server-and-test": "^1.11.0",
     "typescript": "^3.8.3"
   }
 }
