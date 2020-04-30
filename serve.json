@@ -1,0 +1,7 @@
+{
+  "public": "public",
+  "renderSingle": true,
+  "rewrites": [
+    { "source": "/js/:module", "destination": "/js/:module.js" }
+  ]
+}
