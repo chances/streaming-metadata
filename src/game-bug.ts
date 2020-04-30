@@ -8,7 +8,12 @@ document.addEventListener('DOMContentLoaded', function loadText() {
 
   // Dark mode
   if (config.flag('dark')) {
-    document.querySelector('body')?.classList.add('dark')
+    const body = document.querySelector('body')
+    body?.classList.add('dark')
+
+    if (config.flag('debug') && body) {
+      body.style.backgroundColor = 'black'
+    }
   }
 
   // Bug Mode
