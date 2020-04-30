@@ -1,7 +1,10 @@
+import * as lit from '/web_modules/lit-html.js'
+
 import { Game, Games } from './games'
 import * as config from './config'
 
 let gameSection: Element
+let errorSection: Element
 
 document.addEventListener('DOMContentLoaded', async function loadText() {
   const body = document.querySelector('body')
@@ -25,6 +28,10 @@ document.addEventListener('DOMContentLoaded', async function loadText() {
   if (!gameSectionElement) return
   gameSection = gameSectionElement
 
+  const errorSectionElement = document.querySelector('#error')
+  if (!errorSectionElement) return
+  errorSection = errorSectionElement
+
   const metadataUrl = config.url('games')
   const profile = config.value('profile')
   if (!config.flag('demo') && metadataUrl && profile) {
@@ -33,6 +40,7 @@ document.addEventListener('DOMContentLoaded', async function loadText() {
       await fetchMetadata(metadataUrl.toString()).then(updateMetadata(profile))
     } catch (err) {
       // TODO: Log error in Sentry?
+      emitError(err)
       console.error(err)
     } finally {
       body?.classList.remove('loading')
@@ -91,4 +99,14 @@ function addDetails(text: string | string[]) {
       paragraph.textContent = text
       gameSection.appendChild(paragraph)
     })
+}
+
+function emitError(err: Error) {
+  errorSection.innerHTML = ''
+
+  const paragraph = document.createElement('p')
+  paragraph.textContent = `Error: ${err.message}`
+  errorSection.appendChild(paragraph)
+
+  errorSection.classList.remove('hidden')
 }

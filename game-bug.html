@@ -18,6 +18,10 @@
       font-family: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
+    .hidden {
+      visibility: hidden;
+    }
+
     body.dark {
       color: white;
       text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
@@ -30,6 +34,10 @@
       flex-direction: column;
       justify-content: flex-end;
       text-align: right;
+    }
+
+    #error {
+      color: red;
     }
 
     #game {
@@ -64,6 +72,7 @@
     <p class="details">Programming an OBS Browser source for stream metadata</p>
     <p class="details">Q&A Welcomed!</p>
   </section>
+  <section id="error" class="hidden"></section>
   <script type="module" src="js/game-bug.js"></script>
   <script nomodule src="/web_modules/app.nomodule.js"></script>
 </body>
