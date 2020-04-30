@@ -1,3 +1,27 @@
 [build]
   command = "npm run build:netlify"
   publish = "public"
+
+[[redirects]]
+  from = "/js/config"
+  to = "/js/config.js"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/js/games"
+  to = "/js/games.js"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/js/games/Game"
+  to = "/js/games/Game.js"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/js/games/Games"
+  to = "/js/games/Games.js"
+  status = 200
+  force = true
