@@ -55,23 +55,25 @@
       line-height: 1;
     }
 
-    p.details {
+    #game .details > p {
       margin: 8px 0 0;
       font-size: 36px;
       font-weight: 500;
     }
-    p.details:last-child {
+    #game .details > p:last-child {
       line-height: 1;
     }
   </style>
 </head>
 
 <body class="loading">
-  <section id="game">
+  <article id="game">
     <h1 id="title">Game Title Here</h1>
-    <p class="details">Programming an OBS Browser source for stream metadata</p>
-    <p class="details">Q&A Welcomed!</p>
-  </section>
+    <section class="details">
+      <p>Programming an OBS Browser source for stream metadata</p>
+      <p>Q&A Welcomed!</p>
+    </section>
+  </article>
   <section id="error" class="hidden"></section>
   <script type="module" src="js/game-bug.js"></script>
   <script nomodule src="/web_modules/app.nomodule.js"></script>

@@ -3,7 +3,7 @@ import * as lit from '/web_modules/lit-html.js'
 import { Game, Games } from './games'
 import * as config from './config'
 
-let gameSection: Element
+let gameArticle: Element
 let errorSection: Element
 
 document.addEventListener('DOMContentLoaded', async function loadText() {
@@ -24,14 +24,15 @@ document.addEventListener('DOMContentLoaded', async function loadText() {
     document.querySelector('body')?.classList.add('bug')
   }
 
-  const gameSectionElement = document.querySelector('#game')
-  if (!gameSectionElement) return
-  gameSection = gameSectionElement
+  const gameArticleElement = document.querySelector('#game')
+  if (!gameArticleElement) return
+  gameArticle = gameArticleElement
 
   const errorSectionElement = document.querySelector('#error')
   if (!errorSectionElement) return
   errorSection = errorSectionElement
 
+  // Fetch a configured game profile and update the game article
   const metadataUrl = config.url('games')
   const profile = config.value('profile')
   if (!config.flag('demo') && metadataUrl && profile) {
@@ -57,15 +58,11 @@ async function fetchMetadata(metadataUrl: string) {
   // TODO: Fix this return Games.fromJson(json).games
 }
 
+/**
+ * Update stream metadata with a selected game profile
+ */
 function updateMetadata(profile: string) {
   async function updateTitleAndDetails(games: Game[]) {
-    // Clear paragraphs
-    gameSection.innerHTML = ''
-
-    const titleElement = document.createElement('h1')
-    titleElement.id = 'title'
-    gameSection.appendChild(titleElement)
-
     const game = games.find(game => game.alias === profile)
     if (!game) return
 
@@ -82,31 +79,29 @@ async function fetchTextFile(path: string) {
 }
 
 function updateTitle(text: string) {
+  // Update page title
   const titleElement = document.querySelector('title')
   titleElement && (titleElement.textContent = text)
 
-  const headingTitleElement = document.querySelector('h1')
+  // Update game article heading
+  const headingTitleElement = gameArticle.querySelector('h1#title')
   headingTitleElement && (headingTitleElement.textContent = text)
 }
 
 function addDetails(text: string | string[]) {
   if (typeof text === 'string') text = text.split('\n')
-  text.map(text => text.trim())
-    .filter(text => !!text && text !== '')
-    .forEach(text => {
-      const paragraph = document.createElement('p')
-      paragraph.classList.add('details')
-      paragraph.textContent = text
-      gameSection.appendChild(paragraph)
-    })
+
+  const detailLines = text
+    .map(text => text.trim()).filter(text => !!text && text !== '')
+  const details = detailLines.map(line => lit.html`<p>${line}</p>`)
+
+  const gameDetails = gameArticle.querySelector('section.details')
+  if (gameDetails) lit.render(details, gameDetails)
 }
 
 function emitError(err: Error) {
-  errorSection.innerHTML = ''
-
-  const paragraph = document.createElement('p')
-  paragraph.textContent = `Error: ${err.message}`
-  errorSection.appendChild(paragraph)
+  const paragraph = lit.html`<p>Error: ${err.message}</p>`
+  lit.render(paragraph, errorSection)
 
   errorSection.classList.remove('hidden')
 }

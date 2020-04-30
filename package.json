@@ -37,7 +37,8 @@
   },
   "homepage": "https://github.com/chances/streaming-metadata#readme",
   "dependencies": {
-    "@peculiar/json-schema": "^1.1.10"
+    "@peculiar/json-schema": "^1.1.10",
+    "lit-html": "^1.2.1"
   },
   "devDependencies": {
     "serve": "^11.3.0",
