@@ -2,6 +2,9 @@
   command = "npm run build:netlify"
   publish = "public"
 
+# Netlify Rewrites
+# https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file
+# https://docs.netlify.com/routing/redirects/rewrites-proxies
 [[redirects]]
   from = "/js/config"
   to = "/js/config.js"
