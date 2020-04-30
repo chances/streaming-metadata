@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function loadText() {
     document.querySelector('body')?.classList.add('dark')
   }
 
+  // Bug Mode
+  if (config.flag('bug')) {
+    document.querySelector('body')?.classList.add('bug')
+  }
+
   const gameSectionElement = document.querySelector('#game')
   if (!gameSectionElement) return
   gameSection = gameSectionElement
