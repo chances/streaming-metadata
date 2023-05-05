@@ -41,7 +41,7 @@
     "lit-html": "^1.2.1"
   },
   "devDependencies": {
-    "serve": "^11.3.0",
+    "serve": "^14.2.0",
     "shx": "^0.3.2",
     "snowpack": "^1.7.1",
     "start-server-and-test": "^1.11.0",
